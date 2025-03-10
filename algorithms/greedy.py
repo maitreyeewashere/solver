@@ -24,21 +24,20 @@ def fracKnapsack(cap, arr):
     return (finalvalue,select)
 
 def jobSequence(jobs):
-    import heapq  # Ensure heapq is imported
     
     # jobs[i] = (profit, deadline)
-    jobs.sort(key=lambda x: (-x[0], x[1]))  # Sort by profit DESC, deadline ASC
+    jobs.sort(key=lambda x: (-x[0], x[1]))  
 
-    pq = []  # Min heap for tracking scheduled jobs
+    pq = []  
     total_profit = 0
     jobs_scheduled = []
 
     for i,(profit, deadline) in enumerate(jobs):
-        if len(pq) < deadline:  # If we can schedule it within the deadline
+        if len(pq) < deadline: 
             heapq.heappush(pq, profit)
             total_profit += profit
             jobs_scheduled.append(i)
-        elif pq and pq[0] < profit:  # Replace a lower profit job
+        elif pq and pq[0] < profit: 
             total_profit += profit - heapq.heappop(pq)
             heapq.heappush(pq, profit)
 

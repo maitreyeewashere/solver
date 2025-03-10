@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fractional Knapsack</title>
+    <title>Greedy Algorithm: Fractional Knapsack</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script>
         function addItem() {
@@ -26,7 +26,7 @@
 </head>
 <body>
     <h1>Fractional Knapsack Solver</h1>
-    <form method="POST" action="/greedy/frac_knapsack">
+    <form method="POST" action="/greedy/frac_knapsack" onsubmit="return validate()">
 
         <label for="capacity">Capacity:</label>
         <input type="number" name="capacity" required>
@@ -48,5 +48,6 @@
     {% if result is not none %}
         <h2>Max Profit: {{ result }}</h2>
     {% endif %}
+    
 </body>
 </html>
