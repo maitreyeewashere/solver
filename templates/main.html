@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            background-color: #badef4;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .category {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            background-color: rgba(255, 255, 255, 0.1); /* Transparent border effect */
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .category h2 {
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin: 8px 0;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        ul li a:hover {
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>Main Menu</h1>
+    
+    <div class="container">
+        <!-- Greedy Algorithms -->
+        <div class="category">
+            <h2>Greedy Algorithms</h2>
+            <ul>
+                <li><a href="/greedy/fractional-knapsack">Fractional Knapsack</a></li>
+                <li><a href="/greedy/job-sequencing">Job Sequencing</a></li>
+                <li><a href="/greedy/huffman-coding">Huffman Coding</a></li>
+            </ul>
+        </div>
+
+        <!-- Dynamic Programming -->
+        <div class="category">
+            <h2>Dynamic Programming</h2>
+            <ul>
+                <li><a href="/dp/knapsack">0/1 Knapsack</a></li>
+                <li><a href="/dp/longest-common-subsequence">LCS</a></li>
+                <li><a href="/dp/matrix-chain-multiplication">Matrix Chain Multiplication</a></li>
+            </ul>
+        </div>
+
+        <!-- Graph Algorithms -->
+        <div class="category">
+            <h2>Graph Algorithms</h2>
+            <ul>
+                <li><a href="/graph/dijkstra">Dijkstra's Algorithm</a></li>
+                <li><a href="/graph/floyd-warshall">Floyd-Warshall Algorithm</a></li>
+                
+            </ul>
+        </div>
+
+        <!-- Machine Learning -->
+        <div class="category">
+            <h2>Machine Learning</h2>
+            <ul>
+                <li><a href="/ml/linear-regression">Linear Regression</a></li>
+                <li><a href="/ml/k-means">K-Means Clustering</a></li>
+            </ul>
+        </div>
+    </div>
+    <h5>AD Lab Project Made with 💖</h5>
+</body>
+</html>
