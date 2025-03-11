@@ -11,7 +11,6 @@ app = Flask(__name__)
 def index():
     return render_template('main.html')
 
-
 @app.route('/greedy/fractional-knapsack')
 def frac_knapsack_page():
     return render_template('fracknap.html')
@@ -23,7 +22,7 @@ def frac_knapsack_solver():
         cap = float(request.form['capacity'])
         profits = [float(p) for p in request.form.getlist('profits')]
         weights = [float(w) for w in request.form.getlist('weights')]
-        items = list(zip(profits, weights))  
+        items = list(zip(profits, weights))
         result = fracKnapsack(cap, items)
 
     return render_template('fracknap.html', result=result)
@@ -39,7 +38,7 @@ def job_sequence_solver():
     if request.method == 'POST':
         profits = [float(p) for p in request.form.getlist('profits')]
         deadlines = [int(d) for d in request.form.getlist('deadlines')]
-        jobs = list(zip(profits, deadlines)) 
+        jobs = list(zip(profits, deadlines))
         result = jobSequence(jobs)
 
     return render_template('jobs.html', result=result)
@@ -53,7 +52,7 @@ def dijkstra_solver():
         adjacency_list = request.form["adj_list"]
 
         # Convert input string to dictionary
-        adj_list = eval(adjacency_list) 
+        adj_list = eval(adjacency_list)
 
         # Run Dijkstra and get the shortest path
         path, cost, _ = dijkstra(adj_list, start, end)
@@ -65,6 +64,6 @@ def dijkstra_solver():
 
     return render_template("dijkstra.html", path=None, cost=None, img_path=None)
 
-if __name__ == '__main__':    
-    port = int(os.environ.get("PORT", 5000)) 
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
