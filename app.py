@@ -9,39 +9,36 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Ensure static directory exists
-os.makedirs("static", exist_ok=True)
+
 
 @app.route('/')
 def index():
     return render_template('main.html')
 
-# Fractional Knapsack
-@app.route('/greedy/fractional-knapsack')
-def frac_knapsack_page():
-    return render_template('fracknap.html')
 
-@app.route('/greedy/frac_knapsack', methods=['POST'])
-def frac_knapsack_solver():
-    cap = float(request.form['capacity'])
-    profits = list(map(float, request.form.getlist('profits')))
-    weights = list(map(float, request.form.getlist('weights')))
-    result = fracKnapsack(cap, zip(profits, weights))
+@app.route('/greedy/fractional-knapsack', methods=['GET', 'POST'])
+def frac_knapsack():
+    result = None
+    if request.method == 'POST':
+        cap = float(request.form['capacity'])
+        profits = list(map(float, request.form.getlist('profits')))
+        weights = list(map(float, request.form.getlist('weights')))
+        result = fracKnapsack(cap, zip(profits, weights))
+    
     return render_template('fracknap.html', result=result)
 
-# Job Sequencing
-@app.route('/greedy/job-sequencing')
-def job_sequence_page():
-    return render_template('jobs.html')
 
-@app.route('/greedy/jobs', methods=['POST'])
-def job_sequence_solver():
-    profits = list(map(float, request.form.getlist('profits')))
-    deadlines = list(map(int, request.form.getlist('deadlines')))
-    result = jobSequence(zip(profits, deadlines))
+@app.route('/greedy/job-sequencing', methods=['GET', 'POST'])
+def job_sequence():
+    result = None
+    if request.method == 'POST':
+        profits = list(map(float, request.form.getlist('profits')))
+        deadlines = list(map(int, request.form.getlist('deadlines')))
+        result = jobSequence(zip(profits, deadlines))
+    
     return render_template('jobs.html', result=result)
 
-# Dijkstra's Algorithm
+
 @app.route('/graph/dijkstra', methods=["GET", "POST"])
 def dijkstra_solver():
     if request.method == "POST":
@@ -57,7 +54,7 @@ def dijkstra_solver():
     
     return render_template("dijkstra.html")
 
-# Linear Regression
+
 @app.route('/ml/linear-regression', methods=['GET', 'POST'])
 def linear_regression():
     img_path = "static/plot.png"
