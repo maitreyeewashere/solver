@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning: Linear Regression</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        function addItem() {
+            let container = document.getElementById("items-container");
+
+            let newItem = document.createElement("div");
+            newItem.classList.add("row");
+            newItem.innerHTML = `
+                <input type="number" name="x" placeholder="x" required>
+                <input type="number" name="y" placeholder="y" required>
+                <button type="button" onclick="removeItem(this)">❌</button>
+            `;
+
+            container.appendChild(newItem);
+        }
+
+        function removeItem(button) {
+            button.parentElement.remove();
+        }
+    </script>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-between; /* Ensures left-right alignment */
+            align-items: flex-start;
+            padding: 20px;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            gap: 20px; /* Space between left and right sections */
+        }
+
+        /* Left section */
+        .form-container {
+            flex: 1; /* Takes 50% width */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Strict left alignment */
+            max-width: 50%;
+        }
+
+        /* Right section (Graph) */
+        .graph-container {
+            flex: 1; /* Takes 50% width */
+            height: 400px;
+            border: 3px solid black;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 50%;
+        }
+
+        #items-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 5px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .row {
+            display: contents;
+        }
+
+        input {
+            width: 95%;
+            padding: 5px;
+            border: 1px solid #aaa;
+            text-align: center;
+        }
+
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            text-align: left; /* Ensures result text is aligned to the left */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">        
+        <!-- Left Side: Form & Results -->
+        <div class="form-container">
+            <h1>Linear Regression</h1>
+            <form method="POST" action='/ml/linear-regression'>
+                <div id="items-container">
+                    <div class="row">
+                        <input type="number" name="x" placeholder="x" required>
+                        <input type="number" name="y" placeholder="y" required>
+                        <button type="button" onclick="removeItem(this)">🗑️</button>
+                    </div>
+                </div><br>
+                <button type="button" onclick="addItem()">➕</button>
+                <br><br>
+                <button type="submit">Solve</button>
+            </form>
+
+            <!-- Results -->
+            {% if result is not none %}
+                <div class="result-container">
+                    <h2>Regression Equation: y = {{ result[0] }} + {{ result[1] }}x</h2>
+                </div>
+            {% endif %}
+        </div>
+
+        
+        <div class="graph-container">
+            <img id="graph-frame" src="/static/plot.png" alt="Graph will be displayed here" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+        
+    </div>
+
+</body>
+</html>
