@@ -21,10 +21,20 @@
 </head>
 <body>
     <h1>Matrix Chain Multiplication Solver</h1>
+<<<<<<< HEAD
     <form method="POST" action="/dp/mcm">
         <h3>Enter Matrix Dimensions</h3>
         <div id="dimensions-container">
             <input type="number" name="dimensions" placeholder="Matrix Dimension" required>
+=======
+    <form method="POST" action='mcm.html'>
+        <h3>Matrix Dimensions</h3>
+        <div id="matrices-container">
+            <div>
+                <input type="number" name="dimensions" placeholder="Matrix Size" required>
+                <button type="button" onclick="removeMatrix(this)">🗑️</button>
+            </div>
+>>>>>>> 61688dc1ed39a921c14b45cb8384e81274668c5a
         </div><br>
         <button type="button" onclick="addDimension()">➕ Add Dimension</button>
 
