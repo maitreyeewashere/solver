@@ -3,45 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Programming: Matrix Chain Multiplication (MCM)</title>
+    <title>Dynamic Programming: Matrix Chain Multiplication</title>
     <link rel="stylesheet" href="/static/styles.css">
     <script>
-        function addMatrix() {
-            let container = document.getElementById("matrices-container");
+        function addDimension() {
+            let container = document.getElementById("dimensions-container");
 
-            let newMatrix = document.createElement("div");
-            newMatrix.innerHTML = `
-                <input type="number" name="dimensions" placeholder="Matrix Size" required>
-                <button type="button" onclick="removeMatrix(this)">❌</button>
-            `;
+            let newInput = document.createElement("input");
+            newInput.type = "number";
+            newInput.name = "dimensions";
+            newInput.placeholder = "Matrix Dimension";
+            newInput.required = true;
 
-            container.appendChild(newMatrix);
-        }
-
-        function removeMatrix(button) {
-            button.parentElement.remove();
+            container.appendChild(newInput);
         }
     </script>
 </head>
 <body>
     <h1>Matrix Chain Multiplication Solver</h1>
-    <form method="POST" action='/solver/templates/mcm.html'>
-        <h3>Matrix Dimensions</h3>
-        <div id="matrices-container">
-            <div>
-                <input type="number" name="dimensions" placeholder="Matrix Size" required>
-                <button type="button" onclick="removeMatrix(this)">🗑️</button>
-            </div>
+    <form method="POST" action="/dp/mcm">
+        <h3>Enter Matrix Dimensions</h3>
+        <div id="dimensions-container">
+            <input type="number" name="dimensions" placeholder="Matrix Dimension" required>
         </div><br>
-        <button type="button" onclick="addMatrix()">➕</button>
+        <button type="button" onclick="addDimension()">➕ Add Dimension</button>
 
         <br><br>
         <button type="submit">Solve</button>
     </form>
 
-{% if result is not none %}
-    <h2>Minimum Multiplication Cost: {{ result }}</h2>
-{% endif %}
-
+    {% if result is not none %}
+        <h2>Minimum Cost: {{ result }}</h2>
+    {% endif %}
 </body>
 </html>

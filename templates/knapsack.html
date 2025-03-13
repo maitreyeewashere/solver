@@ -11,7 +11,7 @@
 
             let newItem = document.createElement("div");
             newItem.innerHTML = `
-                <input type="number" name="values" placeholder="Value" required>
+                <input type="number" name="profits" placeholder="Profit" required>
                 <input type="number" name="weights" placeholder="Weight" required>
                 <button type="button" onclick="removeItem(this)">❌</button>
             `;
@@ -24,14 +24,16 @@
         }
     </script>
 </head>
-
 <body>
     <h1>0/1 Knapsack Solver</h1>
-    <form method="POST" action='/solver/templates/knapsack.html'>
-        <h3>Items (Value & Weight)</h3>
+    <form method="POST" action="/dp/knapsack" onsubmit="return validate()">
+        <label for="capacity">Capacity:</label>
+        <input type="number" name="capacity" required>
+
+        <h3>Items (Profit & Weight)</h3>
         <div id="items-container">
             <div>
-                <input type="number" name="values" placeholder="Value" required>
+                <input type="number" name="profits" placeholder="Profit" required>
                 <input type="number" name="weights" placeholder="Weight" required>
                 <button type="button" onclick="removeItem(this)">🗑️</button>
             </div>
@@ -39,17 +41,11 @@
         <button type="button" onclick="addItem()">➕</button>
 
         <br><br>
-        <label for="capacity">Knapsack Capacity:</label>
-        <input type="number" name="capacity" required>
-
-        <br><br>
         <button type="submit">Solve</button>
     </form>
 
-{% if result is not none %}
-    <h2>Max Value: {{ result[0] }}</h2>
-    <h3>Items Taken: {{ result[1] }}</h3>
-{% endif %}
-
+    {% if result is not none %}
+        <h2>Max Profit: {{ result }}</h2>
+    {% endif %}
 </body>
 </html>
