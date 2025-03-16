@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Programming: Longest Common Subsequence</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<<<<<<< HEAD
+    <h1>Longest Common Subsequence Solver</h1>
+    <form method="POST" action="/dp/lcs">
+        <label for="string1">String 1:</label>
+=======
+    <h1>Longest Common Subsequence (LCS) Solver</h1>
+    <form method="POST" action='lcs.html'>
+        <label for="string1">Enter First String:</label>
+>>>>>>> 61688dc1ed39a921c14b45cb8384e81274668c5a
+        <input type="text" name="string1" required>
+        
+        <label for="string2">String 2:</label>
+        <input type="text" name="string2" required>
+
+        <br><br>
+        <button type="submit">Solve</button>
+    </form>
+
+    {% if result is not none %}
+        <h2>LCS Length: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>

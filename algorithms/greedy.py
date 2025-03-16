@@ -26,23 +26,23 @@ def fracKnapsack(cap, arr):
 def jobSequence(jobs):
     
     # jobs[i] = (profit, deadline)
-    jobs.sort(key=lambda x: (-x[0], x[1]))  
+    jobs.sort(key=lambda x: (-x[0], x[1]))
 
-    pq = []  
+    pq = []
     total_profit = 0
     jobs_scheduled = []
 
     for i,(profit, deadline) in enumerate(jobs):
-        if len(pq) < deadline: 
+        if len(pq) < deadline:
             heapq.heappush(pq, profit)
             total_profit += profit
             jobs_scheduled.append(i)
-        elif pq and pq[0] < profit: 
+        elif pq and pq[0] < profit:
             total_profit += profit - heapq.heappop(pq)
             heapq.heappush(pq, profit)
 
 
-    return jobs_scheduled, total_profit 
+    return jobs_scheduled, total_profit
 
 
 class NodeTree:
@@ -52,7 +52,7 @@ class NodeTree:
         self.left = None
         self.right = None
 
-    def __lt__(self, other): 
+    def __lt__(self, other):
         return self.freq < other.freq
 
 def huffmanCoding(string):
