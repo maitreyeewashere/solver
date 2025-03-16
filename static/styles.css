@@ -1,53 +1,171 @@
+/* styles.css */
 body {
-            font-family: 'Courier New', Courier, monospace;
-            text-align: center;
-            background-color: #badef4;
-        }
+  display: block;
+  height: 100vh;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  background-color: #1d1d1d;
+  color: antiquewhite;
+}
 
-        h1 {
-            margin-bottom: 20px;
-        }
+nav {
+  width: 50vw;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 1rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
 
-        .container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-        }
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  text-align: right;
+  margin-top: 0.02px;
+}
 
-        .category {
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            background-color: rgba(255, 255, 255, 0.1); /* Transparent border effect */
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
+li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #4a5568;
+  margin-bottom: 0.2rem;
+  border-radius: 5px;
+  transition: background 0.3s;
+  height: auto;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  position: relative;
+  margin-bottom: 10px;
+}
 
-        .category h2 {
-            margin-bottom: 10px;
-            font-size: 20px;
-        }
+.dropdown:nth-child(1) {
+  background-color: #a87302;
+}
 
-        ul {
-            list-style: none;
-            padding: 0;
-        }
+.dropdown:nth-child(2) {
+  background-color: #01936a;
+}
 
-        ul li {
-            margin: 8px 0;
-        }
+.dropdown:nth-child(3) {
+  background-color: #940101;
+}
 
-        ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
+.dropdown:nth-child(4) {
+  background-color: #720095;
+}
 
-        ul li a:hover {
-            color: #007BFF;
-        }
+.dropdown:hover {
+  background-color: #ffffff90;
+}
 
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  display: block;
+  padding: 1rem 0.5rem;
+  margin: 10px;
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 100%; /* Opens to the left */
+  width: max-content;
+  border-radius: 4px;
+  padding: 0.3rem 0;
+  z-index: 1000;
+}
+
+.dropdown-content li {
+  display: block;
+  padding: 0.3rem 0.5rem;
+}
+
+.dropdown-content a {
+  color: white;
+  text-decoration: none;
+  padding: 0.3rem;
+  display: block;
+  font-size: 0.9rem;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* .main-body {
+  max-width: 800px; 
+  margin: 50px auto; 
+  padding: 20px;
+  text-align: left;
+  display: block;
+} */
+
+/* Headings */
+h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+h3 {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  color: rgb(172, 172, 172);
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+/* Paragraph Styling */
+p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  color: antiquewhite; /* Ensures visibility */
+}
+
+.submitted-section {
+  text-align: left;
+  padding: 20px;
+  font-size: 0.8rem;
+  color: rgb(172, 172, 172);
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  position: absolute;
+  bottom: 30px; /* Adjust this to move it closer/farther from footer */
+  width: 100%;
+}
+
+/* FOOTER - Fixed at bottom and aligned left */
+footer {
+  text-align: left;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: rgb(47, 47, 47);
+  color: white;
+  position: fixed;
+  width: 45.12%; /* Matches nav width */
+  bottom: 0;
+  left: 0; /* Aligns to the left */
+}

@@ -1,5 +1,6 @@
-﻿flask
+flask
 gunicorn
-networkx
 matplotlib
 imageio
+numpy
+networkx
