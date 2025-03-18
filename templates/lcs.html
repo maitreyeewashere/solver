@@ -5,17 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Programming: Longest Common Subsequence</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        function generateTable(matrix) {
+            let table = "<table border='1' cellspacing='0' cellpadding='5'>";
+            for (let i = 0; i < matrix.length; i++) {
+                table += "<tr>";
+                for (let j = 0; j < matrix[i].length; j++) {
+                    table += `<td>${matrix[i][j]}</td>`;
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+            document.getElementById("dp-table").innerHTML = table;
+        }
+    </script>
 </head>
 <body>
-<<<<<<< HEAD
     <h1>Longest Common Subsequence Solver</h1>
     <form method="POST" action="/dp/lcs">
         <label for="string1">String 1:</label>
-=======
-    <h1>Longest Common Subsequence (LCS) Solver</h1>
-    <form method="POST" action='lcs.html'>
-        <label for="string1">Enter First String:</label>
->>>>>>> 61688dc1ed39a921c14b45cb8384e81274668c5a
         <input type="text" name="string1" required>
         
         <label for="string2">String 2:</label>
@@ -26,7 +34,14 @@
     </form>
 
     {% if result is not none %}
-        <h2>LCS Length: {{ result }}</h2>
+        <h2>LCS Length: {{ result.length }}</h2>
+        <h3>DP Table:</h3>
+        <div id="dp-table"></div>
+
+        <script>
+            let dpMatrix = {{ result.dp_table | tojson }};
+            generateTable(dpMatrix);
+        </script>
     {% endif %}
 </body>
 </html>
