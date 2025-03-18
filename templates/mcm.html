@@ -14,27 +14,29 @@
             newInput.name = "dimensions";
             newInput.placeholder = "Matrix Dimension";
             newInput.required = true;
-
             container.appendChild(newInput);
+        }
+
+        function generateTable(matrix) {
+            let table = "<table border='1' cellspacing='0' cellpadding='5'>";
+            for (let i = 0; i < matrix.length; i++) {
+                table += "<tr>";
+                for (let j = 0; j < matrix[i].length; j++) {
+                    table += `<td>${matrix[i][j] === Infinity ? '∞' : matrix[i][j]}</td>`;
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+            document.getElementById("dp-table").innerHTML = table;
         }
     </script>
 </head>
 <body>
     <h1>Matrix Chain Multiplication Solver</h1>
-<<<<<<< HEAD
     <form method="POST" action="/dp/mcm">
         <h3>Enter Matrix Dimensions</h3>
         <div id="dimensions-container">
             <input type="number" name="dimensions" placeholder="Matrix Dimension" required>
-=======
-    <form method="POST" action='mcm.html'>
-        <h3>Matrix Dimensions</h3>
-        <div id="matrices-container">
-            <div>
-                <input type="number" name="dimensions" placeholder="Matrix Size" required>
-                <button type="button" onclick="removeMatrix(this)">🗑️</button>
-            </div>
->>>>>>> 61688dc1ed39a921c14b45cb8384e81274668c5a
         </div><br>
         <button type="button" onclick="addDimension()">➕ Add Dimension</button>
 
@@ -43,7 +45,14 @@
     </form>
 
     {% if result is not none %}
-        <h2>Minimum Cost: {{ result }}</h2>
+        <h2>Minimum Multiplication Cost: {{ result.cost }}</h2>
+        <h3>DP Table:</h3>
+        <div id="dp-table"></div>
+
+        <script>
+            let dpMatrix = {{ result.dp_table | tojson }};
+            generateTable(dpMatrix);
+        </script>
     {% endif %}
 </body>
 </html>
