@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Programming: 0/1 Knapsack</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        function addItem() {
+            let container = document.getElementById("items-container");
+
+            let newItem = document.createElement("div");
+            newItem.innerHTML = `
+                <input type="number" name="profits" placeholder="Profit" required>
+                <input type="number" name="weights" placeholder="Weight" required>
+                <button type="button" onclick="removeItem(this)">❌</button>
+            `;
+
+            container.appendChild(newItem);
+        }
+
+        function removeItem(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</head>
+<body>
+    <h1>0/1 Knapsack Solver</h1>
+    <form method="POST" action="/dp/knapsack" onsubmit="return validate()">
+        <label for="capacity">Capacity:</label>
+        <input type="number" name="capacity" required>
+
+        <h3>Items (Profit & Weight)</h3>
+        <div id="items-container">
+            <div>
+                <input type="number" name="profits" placeholder="Profit" required>
+                <input type="number" name="weights" placeholder="Weight" required>
+                <button type="button" onclick="removeItem(this)">🗑️</button>
+            </div>
+        </div><br>
+        <button type="button" onclick="addItem()">➕</button>
+
+        <br><br>
+        <button type="submit">Solve</button>
+    </form>
+
+    {% if result is not none %}
+        <h2>Max Profit: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Programming: Matrix Chain Multiplication</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        function addDimension() {
+            let container = document.getElementById("dimensions-container");
+
+            let newInput = document.createElement("input");
+            newInput.type = "number";
+            newInput.name = "dimensions";
+            newInput.placeholder = "Matrix Dimension";
+            newInput.required = true;
+            container.appendChild(newInput);
+        }
+
+        function generateTable(matrix) {
+            let table = "<table border='1' cellspacing='0' cellpadding='5'>";
+            for (let i = 0; i < matrix.length; i++) {
+                table += "<tr>";
+                for (let j = 0; j < matrix[i].length; j++) {
+                    table += `<td>${matrix[i][j] === Infinity ? '∞' : matrix[i][j]}</td>`;
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+            document.getElementById("dp-table").innerHTML = table;
+        }
+    </script>
+</head>
+<body>
+    <h1>Matrix Chain Multiplication Solver</h1>
+    <form method="POST" action="/dp/mcm">
+        <h3>Enter Matrix Dimensions</h3>
+        <div id="dimensions-container">
+            <input type="number" name="dimensions" placeholder="Matrix Dimension" required>
+        </div><br>
+        <button type="button" onclick="addDimension()">➕ Add Dimension</button>
+
+        <br><br>
+        <button type="submit">Solve</button>
+    </form>
+
+    {% if result is not none %}
+        <h2>Minimum Multiplication Cost: {{ result.cost }}</h2>
+        <h3>DP Table:</h3>
+        <div id="dp-table"></div>
+
+        <script>
+            let dpMatrix = {{ result.dp_table | tojson }};
+            generateTable(dpMatrix);
+        </script>
+    {% endif %}
+</body>
+</html>
