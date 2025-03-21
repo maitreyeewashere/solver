@@ -8,21 +8,25 @@
     <script>
         function addDimension() {
             let container = document.getElementById("dimensions-container");
-
             let newInput = document.createElement("input");
             newInput.type = "number";
             newInput.name = "dimensions";
             newInput.placeholder = "Matrix Dimension";
             newInput.required = true;
+            newInput.style.marginTop = "5px";
+            newInput.style.borderRadius = "8px";
+            newInput.style.padding = "8px";
+            newInput.style.border = "1px solid #ccc";
             container.appendChild(newInput);
         }
 
         function generateTable(matrix) {
-            let table = "<table border='1' cellspacing='0' cellpadding='5'>";
+            let table = "<table border='1' cellspacing='0' cellpadding='8' style='margin: auto; border-collapse: collapse; border-radius: 10px; overflow: hidden;'>";
             for (let i = 0; i < matrix.length; i++) {
                 table += "<tr>";
                 for (let j = 0; j < matrix[i].length; j++) {
-                    table += `<td>${matrix[i][j] === Infinity ? '∞' : matrix[i][j]}</td>`;
+                    let cellValue = matrix[i][j] >= 10000000 ? '∞' : matrix[i][j]; 
+                    table += `<td style='padding: 10px; text-align: center; border-radius: 5px;'>${cellValue}</td>`;
                 }
                 table += "</tr>";
             }
@@ -31,28 +35,36 @@
         }
     </script>
 </head>
-<body>
+<body style="text-align: center; font-family: Arial, sans-serif; margin-top: 20px;">
     <h1>Matrix Chain Multiplication Solver</h1>
-    <form method="POST" action="/dp/mcm">
+    
+    <form method="POST" action="/dp/mcm" style="display: inline-block; text-align: left; margin-top: 20px; padding: 20px; border-radius: 10px;">
         <h3>Enter Matrix Dimensions</h3>
-        <div id="dimensions-container">
-            <input type="number" name="dimensions" placeholder="Matrix Dimension" required>
-        </div><br>
-        <button type="button" onclick="addDimension()">➕ Add Dimension</button>
-
-        <br><br>
-        <button type="submit">Solve</button>
+        
+        <div id="dimensions-container" style="margin-bottom: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <input type="number" name="dimensions" placeholder="Matrix Dimension" required style="border-radius: 8px; padding: 8px; border: 1px solid #ccc;">
+        </div>
+        
+        <button type="button" onclick="addDimension()" style="margin-bottom: 15px; padding: 8px 12px; border-radius: 8px; border: none; background-color: #007BFF; color: white; cursor: pointer;">➕ Add Dimension</button>
+        
+        <br>
+        <button type="submit" style="padding: 10px 15px; border-radius: 8px; border: none; background-color: #28a745; color: white; cursor: pointer;">Solve</button>
     </form>
-
-    {% if result is not none %}
-        <h2>Minimum Multiplication Cost: {{ result.cost }}</h2>
-        <h3>DP Table:</h3>
-        <div id="dp-table"></div>
-
-        <script>
-            let dpMatrix = {{ result.dp_table | tojson }};
+    
+    {% if result and result.cost is not none %}
+        <h2 style="margin-top: 20px;">Minimum Cost: {{ result.cost }}</h2>
+    {% endif %}
+    
+    <div id="dp-table" style="margin-top: 20px;"></div>
+    
+    {% if result and result.dp_table %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let dpMatrix = JSON.parse('{{ result.dp_table | tojson | safe }}');
+            console.log(dpMatrix); // Debugging output
             generateTable(dpMatrix);
-        </script>
+        });
+    </script>
     {% endif %}
 </body>
 </html>

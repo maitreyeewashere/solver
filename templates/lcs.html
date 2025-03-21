@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="/static/styles.css">
     <script>
         function generateTable(matrix) {
-            let table = "<table border='1' cellspacing='0' cellpadding='5'>";
+            let table = "<table border='1' cellspacing='0' cellpadding='8' style='margin: auto; border-collapse: collapse;'>";
             for (let i = 0; i < matrix.length; i++) {
                 table += "<tr>";
                 for (let j = 0; j < matrix[i].length; j++) {
-                    table += `<td>${matrix[i][j]}</td>`;
+                    table += `<td style='padding: 10px; text-align: center;'>${matrix[i][j]}</td>`;
                 }
                 table += "</tr>";
             }
@@ -20,27 +20,38 @@
         }
     </script>
 </head>
-<body>
+<body style="text-align: center; font-family: Arial, sans-serif; margin-top: 20px;">
     <h1>Longest Common Subsequence Solver</h1>
-    <form method="POST" action="/dp/lcs">
-        <label for="string1">String 1:</label>
-        <input type="text" name="string1" required>
-        
-        <label for="string2">String 2:</label>
-        <input type="text" name="string2" required>
+    <div id = "sidebar">
+        <script>
+            fetch('sidebar.html').then(response => response.text()).then(data => {
+                document.getElementById('sidebar').innerHTML = data;
+            });
+        </script>
+    </div>
+    <form method="POST" action="/dp/lcs" style="display: inline-block; text-align: left; margin-top: 20px;">
 
-        <br><br>
-        <button type="submit">Solve</button>
+        <div id = "container" style="margin-bottom: 10px;">
+            <label for="string1">String 1:</label>
+            <input type="text" name="string1" required>        
+            <label for="string2">String 2:</label>
+            <input type="text" name="string2" required>
+            <br><br>
+
+        </div>
+        
+        <button type="submit" style="margin-top: 15px; margin-left: 50%;">Solve</button>
     </form>
 
     {% if result is not none %}
         <h2>LCS Length: {{ result.length }}</h2>
-        <h3>DP Table:</h3>
-        <div id="dp-table"></div>
+        <div id="dp-table" style="margin-top: 20px;"></div>
 
         <script>
-            let dpMatrix = {{ result.dp_table | tojson }};
-            generateTable(dpMatrix);
+            document.addEventListener("DOMContentLoaded", function() {
+                let dpMatrix = JSON.parse('{{ result.dp_table | tojson | safe }}');
+                generateTable(dpMatrix);
+            });
         </script>
     {% endif %}
 </body>

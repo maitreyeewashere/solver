@@ -28,6 +28,7 @@ def regression(x,y):
 
     
     b = estimate(x,y)
+    #print(b)
     return b
 
 

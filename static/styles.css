@@ -47,6 +47,8 @@ li {
   margin-bottom: 10px;
 }
 
+
+
 .dropdown:nth-child(1) {
   background-color: #a87302;
 }
@@ -113,13 +115,13 @@ a {
   display: block;
 }
 
-/* .main-body {
-  max-width: 800px; 
+.main-body {
+  /*max-width: px; */
   margin: 50px auto; 
   padding: 20px;
   text-align: left;
   display: block;
-} */
+} 
 
 /* Headings */
 h1 {
@@ -147,7 +149,7 @@ p {
 
 .submitted-section {
   text-align: left;
-  padding: 20px;
+  padding-left: 20px;
   font-size: 0.8rem;
   color: rgb(172, 172, 172);
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -167,5 +169,7 @@ footer {
   position: fixed;
   width: 45.12%; /* Matches nav width */
   bottom: 0;
-  left: 0; /* Aligns to the left */
+  left: 0; 
 }
+
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning: K-Means</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            padding: 20px;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            gap: 40px; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            max-width: 45%;
+        }
+
+        .form-container h1 {
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        
+
+        .graph-container {
+            flex: 1; 
+            height: 400px;
+            border: 3px solid black;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 50%;
+            border-radius: 5px;
+        }
+
+        .graph-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">        
+        <div class="form-container">
+            <h1>K-Means Clustering</h1>
+            <form method="POST" action='/ml/kmeans'>
+                
+                <div class="form-group">
+                    <label for="k">Number of Clusters (k)</label>
+                    <input type="text" name="k" required>  
+                </div>
+
+                <div class="form-group">
+                    <label for="list">Data Points</label>
+                    <textarea name="list" rows="3" required>[(1,2),(3,4),(4,5)]</textarea>
+                </div>
+                
+                <button type="submit">Run K-Means</button>
+            </form>
+        </div>
+
+        
+        <div class="graph-container">
+            <img id="graph-frame" src="/static/clusters.png" alt="Clusters will be displayed here">
+        </div>
+        
+    </div>
+
+</body>
+</html>
