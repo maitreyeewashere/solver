@@ -12,8 +12,8 @@
             let newItem = document.createElement("div");
             newItem.innerHTML = `
                 <input type="number" name="profits" placeholder="Profit" required>
-                <input type="number" name="deadlines" placeholder="weight" required>
-                <button type="button" onclick="removeItem(this)">❌</button>
+                <input type="number" name="deadlines" placeholder="deadline" required>
+                <button type="button" onclick="removeItem(this)">🗑️</button>
             `;
 
             container.appendChild(newItem);
@@ -30,7 +30,7 @@
     
     
     
-    <form method="POST" action='/greedy/jobs'>
+    <form method="POST" action='/greedy/job-sequencing'>
         <h3>Jobs (Profit & Deadline)</h3>
         <div id="items-container">
             <div>

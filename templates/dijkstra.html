@@ -1,32 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dijkstra's Algorithm</title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-    <h2>Dijkstra's Algorithm</h2>
+    <link rel="stylesheet" href="/static/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: block;
+        height: 100vh;
+        margin: 0;
+        font-family: "Josefin Sans", sans-serif;
+        background-color: #1d1d1d;
+        color: antiquewhite;
+      }
+
+      /* Navigation Sidebar */
+      nav {
+        width: 50vw;
+        height: 100vh;
+        background-color: #000;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 1rem;
+        position: fixed;
+        right: 0;
+        top: 0;
+      }
+
+      /* Main Content */
+      .main-body {
+        margin: 50px auto;
+        padding: 20px;
+        text-align: center; /* Center the text */
+        display: block;
+        max-width: 800px;
+        margin-left: 5vw; /* Push slightly to the right */
+      }
+
+      /* Headings */
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        text-align: center;
+        width: 100%;
+      }
+
+      h3 {
+        color: rgb(172, 172, 172);
+        margin-bottom: 2px;
+        text-align: center;
+      }
+
+      /* Paragraph */
+      p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 15px;
+        color: antiquewhite;
+        text-align: center;
+      }
+
+      /* Form Styling */
+      form {
+        background-color: #292929;
+        padding: 20px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        margin: 20px auto; /* Ensures form is centered */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      input {
+        width: 80%;
+        padding: 8px;
+        margin: 10px 0;
+        background: #121212;
+        border: 1px solid #555;
+        color: antiquewhite;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      /* Button Styling */
+      button {
+        background-color: #01936a;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background 0.3s ease-in-out;
+      }
+
+      .solve {
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto; /* Center the button */
+      }
+
+      button:hover {
+        background-color: #016b50;
+      }
+
+      button[type="submit"] {
+        margin-top: 20px;
+        width: 100%;
+        font-weight: bold;
+      }
+
+      /* Footer */
+      footer {
+        text-align: left;
+        padding: 10px;
+        font-size: 1rem;
+        background-color: rgb(47, 47, 47);
+        color: white;
+        position: fixed;
+        width: 45.12%;
+        bottom: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dijkstra's Algorithm</h1>
 
     <form action="/graph/dijkstra" method="POST">
-        <label for="start">Start Node:</label>
-        <input type="text" name="start" required>
-        
-        <label for="end">End Node:</label>
-        <input type="text" name="end" required>
-        
-        <label for="adj_list">Adjacency List:</label>
-        <textarea name="adj_list" required>{"A": [("B", 4), ("C", 1)], "B": [("D", 5)], "C": [("B", 2), ("D", 8)], "D": []}</textarea>
-    
-        <button type="submit">Find Shortest Path</button>
-    </form>
-    
-    {% if path %}
-        <h3>Shortest Path: {{ path }}</h3>
-        <h3>Cost: {{ cost }}</h3>
-        <img src="/static/graph.png" alt="Shortest Path Animation">
-    {% endif %}
+      <label for="start">Start Node:</label>
+      <input type="text" name="start" required />
 
-</body>
+      <label for="end">End Node:</label>
+      <input type="text" name="end" required />
+
+      <label for="adj_list">Adjacency List:</label>
+      <textarea name="adj_list" required>
+{"A": [("B", 4), ("C", 1)], "B": [("D", 5)], "C": [("B", 2), ("D", 8)], "D": []}</textarea
+      >
+
+      <button type="submit">Find Shortest Path</button>
+    </form>
+
+    {% if path %}
+    <h3>Shortest Path: {{ path }}</h3>
+    <h3>Cost: {{ cost }}</h3>
+    <img src="/static/graph.png" alt="Shortest Path Animation" />
+    {% endif %}
+  </body>
 </html>

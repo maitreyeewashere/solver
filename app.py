@@ -25,7 +25,11 @@ def frac_knapsack():
         cap = float(request.form['capacity'])
         profits = list(map(float, request.form.getlist('profits')))
         weights = list(map(float, request.form.getlist('weights')))
-        result = fracKnapsack(cap, zip(profits, weights))
+        if len(profits) != len(weights):
+            return "Mismatched profits/weights count!", 400
+        if any(w <= 0 for w in weights):
+            return "Weights must be positive!", 400
+        result = fracKnapsack(cap, list(zip(profits, weights)))
     
     return render_template('fracknap.html', result=result)
 
@@ -35,7 +39,7 @@ def job_sequence():
     if request.method == 'POST':
         profits = list(map(float, request.form.getlist('profits')))
         deadlines = list(map(int, request.form.getlist('deadlines')))
-        result = jobSequence(zip(profits, deadlines))
+        result = jobSequence(list(zip(profits, deadlines)))
     
     return render_template('jobs.html', result=result)
 
@@ -52,7 +56,7 @@ def binary_knapsack():
 
 @app.route('/dp/lcs', methods=['GET', 'POST'])
 def longest_cs():
-    result = None  # Default result
+    result = None 
     if request.method == 'POST':
         str1 = request.form.get('string1', '').strip()
         str2 = request.form.get('string2', '').strip()
