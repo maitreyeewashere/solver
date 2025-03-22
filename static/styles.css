@@ -1,175 +1,179 @@
-/* styles.css */
 body {
-  display: block;
-  height: 100vh;
-  margin: 0;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  background-color: #1d1d1d;
+    display: block;
+    height: 100vh;
+    margin: 0;
+    font-family: "Josefin Sans", sans-serif;
+    background-color: #1d1d1d;
+    color: antiquewhite;
+  }
+  
+  nav {
+    width: 50vw;
+    height: 100vh;
+    background-color: #000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 1rem;
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    text-align: right;
+    margin-top: 0.02px;
+  }
+  
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #4a5568;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    height: auto;
+
+    position: relative;
+  }
+  
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    display: block;
+    padding: 1rem 0.5rem;
+    margin: 10px;
+  }
+ 
+  
+  .main-body {
+    margin: 50px auto;
+    padding: 20px;
+    text-align: left;
+    display: block;
+    max-width: 800px;
+  }
+  
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  h3 {
+    color: rgb(172, 172, 172);
+    align-items: baseline;
+    margin-bottom: 2px;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: antiquewhite;
+  }
+  
+  form {
+    background-color: #292929;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center;
+}
+
+input {
+  width: 80%; 
+  padding: 8px;
+  margin: 10px 0;
+  background: #121212;
+  border: 1px solid #555;
   color: antiquewhite;
-}
-
-nav {
-  width: 50vw;
-  height: 100vh;
-  background-color: #000;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  padding: 1rem;
-  position: fixed;
-  right: 0;
-  top: 0;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  width: 100%;
-  text-align: right;
-  margin-top: 0.02px;
-}
-
-li {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  padding: 0.5rem;
-  background-color: #4a5568;
-  margin-bottom: 0.2rem;
   border-radius: 5px;
-  transition: background 0.3s;
-  height: auto;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  position: relative;
-  margin-bottom: 10px;
+  text-align: center; 
 }
 
+  
+  button {
+    background-color: #01936a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
 
+  }
 
-.dropdown:nth-child(1) {
-  background-color: #a87302;
-}
-
-.dropdown:nth-child(2) {
-  background-color: #01936a;
-}
-
-.dropdown:nth-child(3) {
-  background-color: #940101;
-}
-
-.dropdown:nth-child(4) {
-  background-color: #720095;
-}
-
-.dropdown:hover {
-  background-color: #ffffff90;
-}
-
-a {
-  color: white;
-  text-decoration: none;
-  font-size: 2rem;
-  font-weight: bold;
-  display: block;
-  padding: 1rem 0.5rem;
-  margin: 10px;
-}
-
-/* Dropdown styles */
-.dropdown {
-  position: relative;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 100%; /* Opens to the left */
-  width: max-content;
-  border-radius: 4px;
-  padding: 0.3rem 0;
-  z-index: 1000;
-}
-
-.dropdown-content li {
-  display: block;
-  padding: 0.3rem 0.5rem;
-}
-
-.dropdown-content a {
-  color: white;
-  text-decoration: none;
-  padding: 0.3rem;
-  display: block;
-  font-size: 0.9rem;
-}
-
-/* Show dropdown on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.main-body {
-  /*max-width: px; */
-  margin: 50px auto; 
-  padding: 20px;
-  text-align: left;
-  display: block;
-} 
-
-/* Headings */
-h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-h3 {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  color: rgb(172, 172, 172);
-  align-items: baseline;
-  margin-bottom: 2px;
-}
-
-/* Paragraph Styling */
-p {
-  font-size: 1.2rem;
-  line-height: 1.5;
-  margin-bottom: 15px;
-  color: antiquewhite; /* Ensures visibility */
-}
-
-.submitted-section {
-  text-align: left;
-  padding-left: 20px;
-  font-size: 0.8rem;
-  color: rgb(172, 172, 172);
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  position: absolute;
-  bottom: 30px; /* Adjust this to move it closer/farther from footer */
-  width: 100%;
-}
-
-/* FOOTER - Fixed at bottom and aligned left */
-footer {
-  text-align: left;
-  padding: 10px;
-  font-size: 1rem;
-  background-color: rgb(47, 47, 47);
-  color: white;
-  position: fixed;
-  width: 45.12%; /* Matches nav width */
-  bottom: 0;
-  left: 0; 
-}
-
-
+  .solve{
+    margin-top: 15px; 
+    margin-left: 50%;
+  }
+  
+  button:hover {
+    background-color: #016b50;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    font-weight: bold;
+  }
+  
+  
+  #items-container {
+    margin-top: 10px;
+  }
+  
+  #items-container div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #items-container input {
+    flex: 1;
+  }
+  
+  .submitted-section {
+    text-align: left;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    color: rgb(172, 172, 172);
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: left;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: rgb(47, 47, 47);
+    color: white;
+    position: fixed;
+    width: 45.12%;
+    bottom: 0;
+    left: 0;
+  }
+  

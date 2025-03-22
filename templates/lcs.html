@@ -3,15 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Programming: Longest Common Subsequence</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <title>Longest Common Subsequence Solver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
+
+    
+    <style>
+        /* General body styling */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Josefin Sans", sans-serif;
+            background-color: #1d1d1d;
+            color: antiquewhite;
+        }
+
+        /* Main content wrapper */
+        .container {
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            background-color: #292929;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Title */
+        h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            width: 100%;
+        }
+
+        label {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            align-self: flex-start;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #121212;
+            border: 1px solid #555;
+            color: antiquewhite;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        /* Solve button */
+        button {
+            background-color: #01936a;
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #016b50;
+        }
+
+        /* DP Table styling */
+        #dp-table {
+            margin-top: 20px;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #333;
+            color: antiquewhite;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #555;
+        }
+    </style>
+    
     <script>
         function generateTable(matrix) {
-            let table = "<table border='1' cellspacing='0' cellpadding='8' style='margin: auto; border-collapse: collapse;'>";
+            let table = "<table border='1' cellspacing='0' cellpadding='8'>";
             for (let i = 0; i < matrix.length; i++) {
                 table += "<tr>";
                 for (let j = 0; j < matrix[i].length; j++) {
-                    table += `<td style='padding: 10px; text-align: center;'>${matrix[i][j]}</td>`;
+                    table += `<td>${matrix[i][j]}</td>`;
                 }
                 table += "</tr>";
             }
@@ -19,33 +117,26 @@
             document.getElementById("dp-table").innerHTML = table;
         }
     </script>
+    
 </head>
-<body style="text-align: center; font-family: Arial, sans-serif; margin-top: 20px;">
+<body>
     <h1>Longest Common Subsequence Solver</h1>
-    <div id = "sidebar">
-        <script>
-            fetch('sidebar.html').then(response => response.text()).then(data => {
-                document.getElementById('sidebar').innerHTML = data;
-            });
-        </script>
-    </div>
-    <form method="POST" action="/dp/lcs" style="display: inline-block; text-align: left; margin-top: 20px;">
 
-        <div id = "container" style="margin-bottom: 10px;">
+    <div class="container">
+        <form method="POST" action="/dp/lcs">
             <label for="string1">String 1:</label>
-            <input type="text" name="string1" required>        
+            <input type="text" name="string1" required>
+
             <label for="string2">String 2:</label>
             <input type="text" name="string2" required>
-            <br><br>
 
-        </div>
-        
-        <button type="submit" style="margin-top: 15px; margin-left: 50%;">Solve</button>
-    </form>
+            <button class="solve">Solve</button>
+        </form>
+    </div>
 
     {% if result is not none %}
         <h2>LCS Length: {{ result.length }}</h2>
-        <div id="dp-table" style="margin-top: 20px;"></div>
+        <div id="dp-table"></div>
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {

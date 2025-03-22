@@ -52,13 +52,17 @@ def binary_knapsack():
 
 @app.route('/dp/lcs', methods=['GET', 'POST'])
 def longest_cs():
-    result = None
+    result = None  # Default result
     if request.method == 'POST':
         str1 = request.form.get('string1', '').strip()
         str2 = request.form.get('string2', '').strip()
-        result = lcs(str1, str2)  
+        if not str1 or not str2:
+            result = {"error": "Both strings are required!"}  
+        else:
+            result = lcs(str1, str2)
 
-    return render_template('lcs.html', result=result or {"length": None, "dp_table": None})  
+    return render_template('lcs.html', result=result)
+
 
 @app.route('/dp/mcm', methods=['GET', 'POST'])
 def matrix_chain():
