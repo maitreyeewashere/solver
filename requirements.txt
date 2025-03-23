@@ -4,5 +4,4 @@ matplotlib
 imageio
 numpy
 networkx
-io 
 ast
