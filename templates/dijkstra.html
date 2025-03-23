@@ -4,9 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dijkstra's Algorithm</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/dijkstra_styles.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">solver</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Dynamic Programming</a>
+                <ul class="dropdown-content">
+                    <li><a href="/dp/knapsack">0/1 Knapsack</a></li>
+                    <li><a href="/dp/lcs">LCS</a></li>
+                    <li><a href="/dp/mcm">Matrix Chain Multiplication</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Graph Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/graph/dijkstra">Dijkstra's Algorithm</a></li>
+                    <li><a href="/graph/floyd-warshall">Floyd-Warshall Algorithm</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Greedy Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/greedy/fractional-knapsack">Fractional Knapsack</a></li>
+                    <li><a href="/greedy/job-sequencing">Job Sequencing</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Machine Learning</a>
+                <ul class="dropdown-content">
+                    <li><a href="/ml/linear-regression">Linear Regression</a></li>
+                    <li><a href="/ml/k-means">K-Means Clustering</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
     <h2>Dijkstra's Algorithm</h2>
 
     <form action="/graph/dijkstra" method="POST">

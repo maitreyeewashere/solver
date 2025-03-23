@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Greedy Algorithm: Job Sequencing</title>
-    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/jobs_styles.css">
     <script>
         function addItem() {
             let container = document.getElementById("items-container");
@@ -25,21 +25,53 @@
     </script>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">solver</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Dynamic Programming</a>
+                <ul class="dropdown-content">
+                    <li><a href="/dp/knapsack">0/1 Knapsack</a></li>
+                    <li><a href="/dp/lcs">LCS</a></li>
+                    <li><a href="/dp/mcm">Matrix Chain Multiplication</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Graph Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/graph/dijkstra">Dijkstra's Algorithm</a></li>
+                    <li><a href="/graph/floyd-warshall">Floyd-Warshall Algorithm</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Greedy Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/greedy/fractional-knapsack">Fractional Knapsack</a></li>
+                    <li><a href="/greedy/job-sequencing">Job Sequencing</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Machine Learning</a>
+                <ul class="dropdown-content">
+                    <li><a href="/ml/linear-regression">Linear Regression</a></li>
+                    <li><a href="/ml/k-means">K-Means Clustering</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
     <h1>Job Sequencing Solver</h1>
 
-    
-    
-    
     <form method="POST" action='/greedy/jobs'>
         <h3>Jobs (Profit & Deadline)</h3>
         <div id="items-container">
             <div>
                 <input type="number" name="profits" placeholder="Profit" required>
                 <input type="number" name="deadlines" placeholder="deadline" required>
-                <button type="button" onclick="removeItem(this)">🗑️</button>
+                <button type="button" onclick="removeItem(this)" style="margin-bottom: 5px; padding: 8px 12px; border-radius: 5px; border: none; background-color: #ff0000; color: white; cursor: pointer;">🗑️</button>
             </div>
         </div><br>
-        <button type="button" onclick="addItem()">➕</button>
+        <button type="button" onclick="addItem()" style="margin-bottom: 5px; padding: 8px 12px; border-radius: 5px; border: none; background-color: #007BFF; color: white; cursor: pointer;">➕</button>
 
         <br><br>
         <button type="submit">Solve</button>

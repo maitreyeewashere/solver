@@ -7,104 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: "Josefin Sans", sans-serif;
-            background-color: #1d1d1d;
-            color: antiquewhite;
-            text-align: center;
-        }
-
-        .container {
-            background-color: #292929;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 500px;
-            text-align: left;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
-
-        label {
-            font-size: 1.2rem;
-        }
-
-        input {
-            padding: 10px;
-            background: #121212;
-            border: 1px solid #555;
-            color: antiquewhite;
-            border-radius: 5px;
-            font-size: 1rem;
-        }
-
-        button {
-            background-color: #01936a;
-            color: white;
-            border: none;
-            padding: 12px;
-            cursor: pointer;
-            font-size: 1rem;
-            border-radius: 5px;
-            transition: background 0.3s ease-in-out;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #016b50;
-        }
-
-        .remove-btn {
-            border: none;
-            background-color: #ff4d4d;
-            color: white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        table {
-            margin-top: 20px;
-            border-collapse: collapse;
-            background-color: #333;
-            color: antiquewhite;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #555;
-        }
-
-        .items-container{
-            display:flex;
-        }
-    </style>
+    <link href="/static/knapsack.css" rel="stylesheet">
     <script>
         function addItem() {
             let container = document.getElementById("items-container");
@@ -141,6 +44,41 @@
     </script>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">solver</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Dynamic Programming</a>
+                <ul class="dropdown-content">
+                    <li><a href="/dp/knapsack">0/1 Knapsack</a></li>
+                    <li><a href="/dp/lcs">LCS</a></li>
+                    <li><a href="/dp/mcm">Matrix Chain Multiplication</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Graph Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/graph/dijkstra">Dijkstra's Algorithm</a></li>
+                    <li><a href="/graph/floyd-warshall">Floyd-Warshall Algorithm</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Greedy Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/greedy/fractional-knapsack">Fractional Knapsack</a></li>
+                    <li><a href="/greedy/job-sequencing">Job Sequencing</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Machine Learning</a>
+                <ul class="dropdown-content">
+                    <li><a href="/ml/linear-regression">Linear Regression</a></li>
+                    <li><a href="/ml/k-means">K-Means Clustering</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
     <h1>0/1 Knapsack Solver</h1>
     <div class="container">
         <form method="POST" action="/dp/knapsack">
