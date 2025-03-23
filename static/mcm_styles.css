@@ -12,89 +12,89 @@ body {
 }
 
 .container {
-    text-align: center;
-    width: 60%;
-    max-width: 500px;
-    background-color: #1b1b1b;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  }
+  text-align: center;
+  width: 60%;
+  max-width: 500px;
+  background-color: #1b1b1b;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
 
 h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
 form {
-    background-color: #292929;
-    padding: 20px;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 500px;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    text-align: center;
+  background-color: #292929;
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 label {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 input {
-    padding: 10px;
-    background: #121212;
-    border: 1px solid #555;
-    color: antiquewhite;
-    border-radius: 5px;
-    font-size: 1rem;
+  padding: 10px;
+  background: #121212;
+  border: 1px solid #555;
+  color: antiquewhite;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
 button {
-    background-color: #01936a;
-    color: white;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-    width: 100%;
+  background-color: #01936a;
+  color: white;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background 0.3s ease-in-out;
+  width: 100%;
 }
 
 button:hover {
-    background-color: #016b50;
+  background-color: #016b50;
 }
 
 .remove-btn {
-    border: none;
-    background-color: #ff4d4d;
-    color: white;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  border: none;
+  background-color: #ff4d4d;
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 table {
-    margin-top: 20px;
-    border-collapse: collapse;
-    background-color: #333;
-    color: antiquewhite;
-    width: 100%;
-    max-width: 500px;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: #333;
+  color: antiquewhite;
+  width: 100%;
+  max-width: 500px;
 }
 
 td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #555;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #555;
 }
 
 .logo {
@@ -118,6 +118,7 @@ td {
 .navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  color: antiquewhite;
 }
 
 .nav-links {
@@ -131,6 +132,7 @@ td {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s;
+  margin-right: 10px;
 }
 
 .nav-links a:hover {
