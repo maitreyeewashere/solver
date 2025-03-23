@@ -7,7 +7,6 @@ from algorithms.KMeans import kmeans
 from algorithms.FW import *
 import os
 import json
-import time
 import matplotlib
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
@@ -170,50 +169,34 @@ def linear_regression():
     return render_template('linreg.html', result=result, img_path=f'/{img_path}')
 
 @app.route('/ml/kmeans', methods=['GET', 'POST'])
-def handle_kmeans():
+def kmeans_route():
     if request.method == 'POST':
         try:
-            # Get form data
             k = int(request.form['k'])
-            data_str = request.form['list']
+            data = eval(request.form['list']) 
+            X = np.array(data)
             
-            # Convert string input to numpy array
-            data = np.array(ast.literal_eval(data_str))
+            clusters = kmeans(X, k)
             
-            # Run K-Means algorithm
-            clusters = kmeans(data, k=k)
-            
-            # Create visualization
-            plt.figure(figsize=(8, 6))
-            colors = ['r', 'g', 'b', 'c', 'm', 'y']
+            plt.figure(figsize=(6, 6))
+            colors = ['r', 'g', 'b', 'c', 'm', 'y', 'k'] * 10  
             
             for i, cluster in enumerate(clusters):
-                if cluster['points']:
-                    points = np.array(cluster['points'])
-                    plt.scatter(points[:,0], points[:,1], 
-                               c=colors[i%len(colors)], 
-                               label=f'Cluster {i+1}')
-                    plt.scatter(cluster['center'][0], cluster['center'][1],
-                               marker='x', s=200, c='black', linewidths=3)
+                points = np.array(cluster['points'])
+                if len(points) > 0:
+                    plt.scatter(points[:, 0], points[:, 1], color=colors[i], label=f'Cluster {i+1}')
+                    plt.scatter(cluster['center'][0], cluster['center'][1], color='black', marker='x', s=100)
             
             plt.legend()
-            plt.grid(True)
-            
-            # Save plot with cache-busting timestamp
-            timestamp = str(int(time.time()))
-            plot_path = os.path.join(app.config['STATIC_FOLDER'], f'clusters_{timestamp}.png')
-            plt.savefig(plot_path)
+            plt.title("K-Means Clustering")
+            plt.savefig("static/clusters.png")  
             plt.close()
             
-            return render_template('kmeans.html', 
-                                 plot_url=f'clusters_{timestamp}.png')
-            
         except Exception as e:
-            return f"Error processing request: {str(e)}"
+            return f"Error: {e}" 
     
-    # Initial GET request
-    return render_template('kmeans.html', plot_url=None)
+    return render_template('kmeans.html')
 
 if __name__ == '__main__':    
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
     #print(app.url_map)
