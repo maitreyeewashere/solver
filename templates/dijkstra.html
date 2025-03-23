@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dijkstra's Algorithm</title>
     <link rel="stylesheet" href="/static/dijkstra_styles.css">
 </head>
@@ -43,25 +43,39 @@
         </ul>
     </nav>
     <h2>Dijkstra's Algorithm</h2>
-
-    <form action="/graph/dijkstra" method="POST">
+    <div class="content-wrapper">
+      <div class="title-container">
+        <h1>Dijkstra's Algorithm</h1>
+      </div>
+      <form action="/graph/dijkstra" method="POST">
         <label for="start">Start Node:</label>
-        <input type="text" name="start" required>
-        
+        <input type="text" name="start" required />
+
         <label for="end">End Node:</label>
-        <input type="text" name="end" required>
-        
+        <input type="text" name="end" required />
+
         <label for="adj_list">Adjacency List:</label>
-        <textarea name="adj_list" required>{"A": [("B", 4), ("C", 1)], "B": [("D", 5)], "C": [("B", 2), ("D", 8)], "D": []}</textarea>
-    
+        <textarea name="adj_list" required>
+{"A": [["B", 4], ["C", 1]], "B": [["D", 5]], "C": [["B", 2], ["D", 8]], "D": []}
+        </textarea>
+
         <button type="submit">Find Shortest Path</button>
-    </form>
-    
-    {% if path %}
+      </form>
+
+      {% if path %}
+      <div class="result-container">
         <h3>Shortest Path: {{ path }}</h3>
         <h3>Cost: {{ cost }}</h3>
-        <img src="/static/graph.png" alt="Shortest Path Animation">
-    {% endif %}
+        <img
+          src="{{ url_for('static', filename=img_path.split('/')[-1]) }}"
+          alt="Shortest Path Graph"
+        />
+      </div>
+      {% endif %}
 
-</body>
+      {% if error %}
+      <p style="color: red">{{ error }}</p>
+      {% endif %}
+    </div>
+  </body>
 </html>

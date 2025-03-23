@@ -1,18 +1,18 @@
 import heapq
 import networkx as nx
 import matplotlib.pyplot as plt
-import imageio
-import os
+import json
+import uuid
 
-def dijkstra(adj_list, start,end):
+def dijkstra(adj_list, start, end):
     graph = nx.DiGraph()
 
     for node, neighbours in adj_list.items():
         for neighbour, weight in neighbours:
             graph.add_edge(node, neighbour, weight=weight)
 
-    pq = [(0,start)] #minheap (cost, node)
-    distances = {node: float('inf') for node in graph.nodes} #setting initial distances to infinity
+    pq = [(0, start)]  # minheap (cost, node)
+    distances = {node: float('inf') for node in graph.nodes}  # setting initial distances to infinity
     distances[start] = 0
 
     parent = {node: None for node in graph.nodes}
@@ -30,8 +30,7 @@ def dijkstra(adj_list, start,end):
             if new_dist < distances[neighbour]:
                 distances[neighbour] = new_dist
                 parent[neighbour] = curr_node
-                heapq.heappush(pq,(new_dist,neighbour))
-
+                heapq.heappush(pq, (new_dist, neighbour))
 
     path = []
     node = end
@@ -42,7 +41,7 @@ def dijkstra(adj_list, start,end):
 
     return path, distances[end], graph
 
-def visualiseGraph(adj_list,path):
+def visualiseGraph(adj_list, path):
     graph = nx.DiGraph()
 
     for node, neighbours in adj_list.items():
@@ -50,8 +49,8 @@ def visualiseGraph(adj_list,path):
             graph.add_edge(node, neighbour, weight=weight)
 
     pos = nx.spring_layout(graph)
-    plt.figure(figsize=(8,6))
-    nx.draw(graph, pos,with_labels=True,node_color='lightblue',edge_color='gray',node_size=2000,font_size=10)
+    plt.figure(figsize=(8, 6))
+    nx.draw(graph, pos, with_labels=True, node_color='lightblue', edge_color='gray', node_size=2000, font_size=10)
 
     path_edges = list(zip(path, path[1:]))
     nx.draw_networkx_edges(graph, pos, edgelist=path_edges, edge_color="red", width=2.5)
@@ -59,26 +58,8 @@ def visualiseGraph(adj_list,path):
     edge_labels = {(u, v): f"{graph[u][v]['weight']}" for u, v in graph.edges()}
     nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_labels)
 
-    img_path = "static/graph.png"
-    plt.savefig(img_path)
+    filename = f"static/graph_{uuid.uuid4().hex[:8]}.png"
+    plt.savefig(filename)
     plt.close()
-    return img_path
-
-'''
-adj_list = {
-    "A": [("B", 4), ("C", 1)],
-    "B": [("D", 5)],
-    "C": [("B", 2), ("D", 8)],
-    "D": []
-}
-
-start = "A"
-end = "D"
-
-
-path, cost, graph = dijkstra(adj_list, start, end)
-print(f"Shortest path: {path}")
-print(f"Total cost: {cost}")
-
-img_path = visualiseGraph(adj_list, path)
-print(f"Graph saved at: {img_path}")'''
+    
+    return filename
