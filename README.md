@@ -22,8 +22,13 @@ access.
 To run it locally on a system:
 - Ensure that the prerequisites are installed: Git and Python
 - Open cmd to run:
-o git clone https://github.com/maitreyeewashere/solver.git
-o cd solver
-- Install dependencies using pip install -r requirements.txt
-- Run using python app.py
+  
+`git clone https://github.com/maitreyeewashere/solver.git`
+
+`cd solver`
+
+`pip install -r requirements.txt` (Install dependencies)
+
+`python app.py` (Run the code)
+
 - Access it using the specified port
