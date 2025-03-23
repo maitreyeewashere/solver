@@ -89,7 +89,8 @@ a {
   width: max-content;
   border-radius: 4px;
   padding: 0.3rem 0;
-  z-index: 1000;
+  z-index: 9999;
+  pointer-events: auto;
 }
 
 .dropdown-content li {
@@ -106,7 +107,8 @@ a {
 }
 
 
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
   display: block;
 }
 
@@ -149,7 +151,7 @@ p {
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   position: absolute;
   bottom: 50px; 
-  width: 46%;
+  width: 45.5%;
 }
 
 
@@ -160,7 +162,8 @@ footer {
   background-color: rgb(47, 47, 47);
   color: white;
   position: fixed;
-  width: 45.12%; 
+  width: 100%;
+  z-index: -1; 
   bottom: 0;
   left: 0; 
 }
@@ -214,7 +217,3 @@ footer {
 
 
 }
-
-
-
-

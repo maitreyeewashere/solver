@@ -7,147 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
-
-    
-    <style>
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: "Josefin Sans", sans-serif;
-    background-color: #1d1d1d;
-    color: antiquewhite;
-}
-
-.container {
-    display: flex;
-    width: 90%;
-    max-width: 900px;
-    gap: 20px;
-}
-
-/* Form section */
-.form-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #292929;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    max-width: 50%;
-}
-
-h1 {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-
-form {
-    width: 100%;
-}
-
-#items-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-}
-
-.row {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    width: 100%;
-}
-
-/* Adjusted input fields */
-input {
-    width: 70px; /* Made input fields narrower */
-    padding: 8px;
-    background: #121212;
-    border: 1px solid #555;
-    color: antiquewhite;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 1rem;
-}
-
-/* Buttons */
-.button-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: 15px;
-}
-
-button {
-    background-color: #01936a;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background 0.3s ease-in-out;
-}
-
-button:hover {
-    background-color: #016b50;
-}
-
-/* Trash button */
-.trash-button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.2em;
-    color: #ff4d4d;
-    transition: color 0.3s ease-in-out;
-}
-
-.trash-button:hover {
-    color: #ff1a1a;
-}
-
-/* Add button */
-.add-button {
-    font-size: 1.5rem;
-    background: none;
-    color: #01936a;
-    border: none;
-    cursor: pointer;
-    transition: color 0.3s ease-in-out;
-}
-
-.add-button:hover {
-    color: #016b50;
-}
-
-/* Graph section */
-.graph-container {
-    flex: 1;
-    height: 400px;
-    border: 3px solid #555;
-    background-color: #333;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    max-width: 50%;
-    padding: 10px;
-}
-
-.result-container {
-    margin-top: 20px;
-    text-align: left;
-}
-
-    </style>
+    <link href="/static/linreg_styles.css" rel="stylesheet">
 
     <script>
         function addItem() {
@@ -171,6 +31,41 @@ button:hover {
 
 </head>
 <body>
+    <nav class="navbar">
+        <div class="logo">solver</div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="/">Home</a></li>
+            <li class="dropdown">
+                <a href="#">Dynamic Programming</a>
+                <ul class="dropdown-content">
+                    <li><a href="/dp/knapsack">0/1 Knapsack</a></li>
+                    <li><a href="/dp/lcs">LCS</a></li>
+                    <li><a href="/dp/mcm">Matrix Chain Multiplication</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Graph Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/graph/dijkstra">Dijkstra's Algorithm</a></li>
+                    <li><a href="/graph/floyd-warshall">Floyd-Warshall Algorithm</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Greedy Algorithm</a>
+                <ul class="dropdown-content">
+                    <li><a href="/greedy/fractional-knapsack">Fractional Knapsack</a></li>
+                    <li><a href="/greedy/job-sequencing">Job Sequencing</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#">Machine Learning</a>
+                <ul class="dropdown-content">
+                    <li><a href="/ml/linear-regression">Linear Regression</a></li>
+                    <li><a href="/ml/k-means">K-Means Clustering</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
     <div class="container">        
         <div class="form-container">
