@@ -7,6 +7,7 @@ from algorithms.KMeans import kmeans
 from algorithms.FW import *
 import os
 import json
+import time
 import matplotlib
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
@@ -84,17 +85,29 @@ def matrix_chain():
 @app.route('/graph/dijkstra', methods=["GET", "POST"])
 def dijkstra_solver():
     if request.method == "POST":
-        start, end = request.form["start"], request.form["end"]
+        start = request.form["start"].upper()
+        end = request.form["end"].upper()
+        
         try:
             adj_list = json.loads(request.form["adj_list"])
+            if start not in adj_list or end not in adj_list:
+                return render_template("dijkstra.html", error="Start/end node not in graph")
         except json.JSONDecodeError:
             return render_template("dijkstra.html", error="Invalid adjacency list format.")
         
         path, cost, _ = dijkstra(adj_list, start, end)
+        
+        if cost == float('inf'):
+            return render_template("dijkstra.html", error="No path exists between nodes")
+        
         img_path = visualiseGraph(adj_list, path)
+        
         return render_template("dijkstra.html", path=path, cost=cost, img_path=img_path)
     
     return render_template("dijkstra.html")
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 @app.route('/graph/floyd-warshall', methods=["GET", "POST"])
 def floyd_warshall():
@@ -157,49 +170,50 @@ def linear_regression():
     return render_template('linreg.html', result=result, img_path=f'/{img_path}')
 
 @app.route('/ml/kmeans', methods=['GET', 'POST'])
-def k_means():
-
-    result = None
-
-    def save_plot(points, clusters):
-
-        img_path = "static/clusters.png"
-    
-        if os.path.exists(img_path):
-            os.remove(img_path)
-        plt.figure(figsize=(6, 4), dpi=100)
-        plt.grid(True)
-
-        colors = ['red', 'green', 'purple', 'orange', 'brown']
-
-        for i, cluster in enumerate(clusters):
-            cluster_points = np.array(cluster['points'])
-            if len(cluster_points) > 0:
-                plt.scatter(cluster_points[:, 0], cluster_points[:, 1], color=colors[i % len(colors)], label=f'Cluster {i+1}')
-            plt.scatter(*cluster['center'], color='black', marker='x', s=100, label=f'Centroid {i+1}')
-
-        plt.legend()
-        plt.savefig(img_path, bbox_inches='tight')
-        plt.close()
-
+def handle_kmeans():
     if request.method == 'POST':
         try:
+            # Get form data
             k = int(request.form['k'])
-            points = json.loads(request.form["list"])
-            points = [tuple(p) for p in points]  
-
-            if k > 0 and points:
-                clusters = kmeans(np.array(points), k)  
-                save_plot(points, clusters)
-                result = f"K-Means Clustering with {k} clusters completed."
-            else:
-                return render_template("kmeans.html", error="Invalid input.", img_path=None)
-
-        except (ValueError, json.JSONDecodeError):
-            return render_template("kmeans.html", error="Invalid input format.", img_path=None)
-
-    return render_template('kmeans.html', result=result, img_path=f'/{img_path}' if result else None)
-
+            data_str = request.form['list']
+            
+            # Convert string input to numpy array
+            data = np.array(ast.literal_eval(data_str))
+            
+            # Run K-Means algorithm
+            clusters = kmeans(data, k=k)
+            
+            # Create visualization
+            plt.figure(figsize=(8, 6))
+            colors = ['r', 'g', 'b', 'c', 'm', 'y']
+            
+            for i, cluster in enumerate(clusters):
+                if cluster['points']:
+                    points = np.array(cluster['points'])
+                    plt.scatter(points[:,0], points[:,1], 
+                               c=colors[i%len(colors)], 
+                               label=f'Cluster {i+1}')
+                    plt.scatter(cluster['center'][0], cluster['center'][1],
+                               marker='x', s=200, c='black', linewidths=3)
+            
+            plt.legend()
+            plt.grid(True)
+            
+            # Save plot with cache-busting timestamp
+            timestamp = str(int(time.time()))
+            plot_path = os.path.join(app.config['STATIC_FOLDER'], f'clusters_{timestamp}.png')
+            plt.savefig(plot_path)
+            plt.close()
+            
+            return render_template('kmeans.html', 
+                                 plot_url=f'clusters_{timestamp}.png')
+            
+        except Exception as e:
+            return f"Error processing request: {str(e)}"
+    
+    # Initial GET request
+    return render_template('kmeans.html', plot_url=None)
 
 if __name__ == '__main__':    
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
+    #print(app.url_map)
