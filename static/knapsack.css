@@ -31,6 +31,7 @@ body {
 .navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  color: antiquewhite;
 }
 
 .nav-links {
@@ -44,6 +45,7 @@ body {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s;
+  margin-right: 10px;
 }
 
 .nav-links a:hover {

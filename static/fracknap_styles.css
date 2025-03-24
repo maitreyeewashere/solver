@@ -3,7 +3,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 130vh;
     margin: 0;
     font-family: "Josefin Sans", sans-serif;
     background-color: #1d1d1d;
@@ -96,6 +96,7 @@ h2 {
 .navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;
+  color: antiquewhite;
 }
 
 .nav-links {
@@ -109,6 +110,7 @@ h2 {
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s;
+  margin-right: 10px;
 }
 
 .nav-links a:hover {

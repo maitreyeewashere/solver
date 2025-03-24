@@ -2,31 +2,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 120vh;
+  min-height: 107vh;
   margin: 0;
-  font-family: "Josefin Sans", sans-serif;
+  padding: 20px;
   background-color: #1d1d1d;
-  color: antiquewhite;
-}
-
-.container {
-  display: flex;
-  width: 90%;
-  max-width: 900px;
-  gap: 20px;
-}
-
-/* Form section */
-.form-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: #292929;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  max-width: 50%;
+  font-family: "Josefin Sans";
 }
 
 h1 {
@@ -35,103 +15,99 @@ h1 {
   margin-bottom: 20px;
 }
 
-form {
-  width: 100%;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  max-width: 900px;
+  gap: 20px;
+  padding: 25px;
+  background-color: #292929;
+  border-radius: 10px;
 }
 
-#items-container {
+.form-container {
+  flex: 1;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 100%;
 }
 
-.row {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-}
-
-/* Adjusted input fields */
-input {
-  width: 70px; /* Made input fields narrower */
-  padding: 8px;
-  background: #121212;
-  border: 1px solid #555;
-  color: antiquewhite;
-  border-radius: 5px;
+.form-container h1 {
+  margin-bottom: 15px;
   text-align: center;
-  font-size: 1rem;
+  color: #fafafa;
 }
 
-/* Buttons */
-.button-container {
+.form-group {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.p {
+  font-size: 3px;
+}
+
+input,
+textarea {
   width: 100%;
-  margin-top: 15px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
 }
 
 button {
-  background-color: #01936a;
+  width: 100%;
+  padding: 12px;
+  background: #01936a;
   color: white;
   border: none;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 1rem;
   border-radius: 5px;
-  transition: background 0.3s ease-in-out;
+  cursor: pointer;
+  font-size: 1em;
+  transition: 0.3s ease;
 }
 
 button:hover {
-  background-color: #016b50;
+  background: #26765f;
 }
 
-/* Trash button */
-.trash-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2em;
-  color: #ff4d4d;
-  transition: color 0.3s ease-in-out;
-}
-
-.trash-button:hover {
-  color: #ff1a1a;
-}
-
-/* Add button */
-.add-button {
-  font-size: 1.5rem;
-  background: none;
-  color: #01936a;
-  border: none;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
-
-.add-button:hover {
-  color: #016b50;
-}
-
-/* Graph section */
 .graph-container {
   flex: 1;
+  min-width: 300px;
   height: 400px;
-  background-color: #333;
+  background-color: #292929;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  max-width: 50%;
-  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-.result-container {
-  margin-top: 20px;
-  text-align: left;
+.graph-container img {
+  width: 100%;
+  height: 90%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .graph-container {
+    height: 300px;
+  }
 }
 
 .logo {
@@ -151,7 +127,6 @@ button:hover {
   width: 100%;
   z-index: 1000;
 }
-
 .navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;
