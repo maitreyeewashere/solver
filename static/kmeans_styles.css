@@ -1,10 +1,11 @@
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  min-height: 107vh;
+  min-height: 100vh;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   background-color: #1d1d1d;
   font-family: "Josefin Sans";
 }
@@ -24,6 +25,7 @@ h1 {
   padding: 25px;
   background-color: #292929;
   border-radius: 10px;
+  margin-top: 80px; /* Adjusted for navbar */
 }
 
 .form-container {
@@ -48,10 +50,6 @@ h1 {
 
 label {
   font-weight: bold;
-}
-
-.p {
-  font-size: 3px;
 }
 
 input,
@@ -98,6 +96,29 @@ button:hover {
   border-radius: 5px;
 }
 
+.result-container {
+  color: #fafafa;
+  margin-top: 20px;
+  text-align: left;
+  width: 90%;
+  max-width: 900px;
+  padding: 25px;
+  background-color: #292929;
+  border-radius: 10px;
+}
+
+.result-container h2 {
+  margin-bottom: 15px;
+}
+
+.cluster-box {
+  margin-bottom: 15px;
+}
+
+.cluster-box h3 {
+  margin-top: 0;
+}
+
 @media (max-width: 768px) {
   .container {
     flex-direction: column;
@@ -115,6 +136,7 @@ button:hover {
   color: antiquewhite;
   padding-left: 50px;
 }
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -127,6 +149,7 @@ button:hover {
   width: 100%;
   z-index: 1000;
 }
+
 .navbar .logo {
   font-size: 1.5rem;
   font-weight: bold;

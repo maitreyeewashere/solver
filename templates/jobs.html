@@ -68,13 +68,13 @@
             <div>
                 <input type="number" name="profits" placeholder="Profit" required>
                 <input type="number" name="deadlines" placeholder="deadline" required>
-                <button type="button" onclick="removeItem(this)" style="margin-bottom: 5px; padding: 8px 12px; border-radius: 5px; border: none; background-color: #ff0000; color: white; cursor: pointer;">🗑️</button>
+                <button type="button" onclick="removeItem(this)">🗑️</button>
             </div>
         </div><br>
         <button type="button" onclick="addItem()" style="margin-bottom: 5px; padding: 8px 12px; border-radius: 5px; border: none; background-color: #007BFF; color: white; cursor: pointer;">➕</button>
 
         <br><br>
-        <button type="submit">Solve</button>
+        <button type="submit" style="background-color: #01936a;">Solve</button>
     </form>
 
 {% if result is not none %}

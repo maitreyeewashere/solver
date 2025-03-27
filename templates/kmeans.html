@@ -1,91 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Machine Learning: K-Means</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/static/kmeans_styles.css" />
-  </head>
-  <body>
-    <nav class="navbar">
-      <div class="logo">solver</div>
-      <ul class="nav-links" id="nav-links">
-          <li><a href="/">Home</a></li>
-          <li class="dropdown">
-              <a href="#">Dynamic Programming</a>
-              <ul class="dropdown-content">
-                  <li><a href="/dp/knapsack">0/1 Knapsack</a></li>
-                  <li><a href="/dp/lcs">LCS</a></li>
-                  <li><a href="/dp/mcm">Matrix Chain Multiplication</a></li>
-              </ul>
-          </li>
-          <li class="dropdown">
-              <a href="#">Graph Algorithm</a>
-              <ul class="dropdown-content">
-                  <li><a href="/graph/dijkstra">Dijkstra's Algorithm</a></li>
-                  <li><a href="/graph/floyd-warshall">Floyd-Warshall Algorithm</a></li>
-              </ul>
-          </li>
-          <li class="dropdown">
-              <a href="#">Greedy Algorithm</a>
-              <ul class="dropdown-content">
-                  <li><a href="/greedy/fractional-knapsack">Fractional Knapsack</a></li>
-                  <li><a href="/greedy/job-sequencing">Job Sequencing</a></li>
-              </ul>
-          </li>
-          <li class="dropdown">
-              <a href="#">Machine Learning</a>
-              <ul class="dropdown-content">
-                  <li><a href="/ml/linear-regression">Linear Regression</a></li>
-                  <li><a href="/ml/kmeans">K-Means Clustering</a></li>
-              </ul>
-          </li>
-      </ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Machine Learning: K-Means</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/kmeans_styles.css" />
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">solver</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Dynamic Programming</a>
+        <ul class="dropdown-content">
+          <li><a href="/dp/knapsack">0/1 Knapsack</a></li>
+          <li><a href="/dp/lcs">LCS</a></li>
+          <li><a href="/dp/mcm">Matrix Chain Multiplication</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Graph Algorithm</a>
+        <ul class="dropdown-content">
+          <li><a href="/graph/dijkstra">Dijkstra's Algorithm</a></li>
+          <li><a href="/graph/floyd-warshall">Floyd-Warshall Algorithm</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Greedy Algorithm</a>
+        <ul class="dropdown-content">
+          <li><a href="/greedy/fractional-knapsack">Fractional Knapsack</a></li>
+          <li><a href="/greedy/job-sequencing">Job Sequencing</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Machine Learning</a>
+        <ul class="dropdown-content">
+          <li><a href="/ml/linear-regression">Linear Regression</a></li>
+          <li><a href="/ml/kmeans">K-Means Clustering</a></li>
+        </ul>
+      </li>
+    </ul>
   </nav>
-    <div class="container">
-      <div class="form-container">
-        <h1>K-Means Clustering</h1>
-        <form method="POST" action="/ml/kmeans">
-          <div class="form-group">
-            <label for="k">Number of Clusters (k)</label>
-            <input type="text" name="k" required />
-          </div>
-
-          <div class="form-group">
-            <label for="list">Data Points</label>
-            <textarea name="list" rows="3" required>
-[[1, 1],[1, 2],[1, 3],[5, 5],[6, 5],[7, 7],[8, 8]] </textarea
-            >
-          </div>
-
-          <button type="submit">Run K-Means</button>
-        </form>
-      </div>
-
-      <div class="graph-container">
-        <img src="/static/clusters.png" alt="Clusters" />
-      </div>
-
-      {% if result is not none %}
-      <div class="result-container">
-        <h2>Clusters Formed</h2>
-        {% for cluster in result %}
-        <div class="cluster-box">
-          <h3>Cluster {{ loop.index }}</h3>
-          <p>Center: ({{ cluster['center'][0] | round(2) }}, {{
-            cluster['center'][1] | round(2) }})
-          </p>
-          <p> Points:
-            {% for point in cluster['points'] %} ({{ point[0] }}, {{ point[1]
-            }}){% if not loop.last %}, {% endif %} {% endfor %}
-          </p>
+  <div class="container">
+    <div class="form-container">
+      <h1>K-Means Clustering</h1>
+      <form method="POST" action="/ml/kmeans">
+        <div class="form-group">
+          <label for="k">Number of Clusters (k)</label>
+          <input type="text" name="k" required />
         </div>
-        {% endfor %}
-      </div>
-      {% endif %}
+
+        <div class="form-group">
+          <label for="list">Data Points</label>
+          <textarea name="list" rows="3" required>
+[[1, 1],[1, 2],[1, 3],[5, 5],[6, 5],[7, 7],[8, 8]] </textarea>
+        </div>
+
+        <button type="submit">Run K-Means</button>
+      </form>
     </div>
-  </body>
+
+    <div class="graph-container">
+      <img src="/static/clusters.png" alt="Clusters" />
+    </div>
+  </div>
+  {% if result is not none %}
+  <div class="result-container">
+    <h2>Clusters Formed</h2>
+    {% for cluster in result %}
+    <div class="cluster-box">
+      <h3>Cluster {{ loop.index }}</h3>
+      <p>Center: ({{ cluster['center'][0] | round(2) }}, {{
+        cluster['center'][1] | round(2) }})
+      </p>
+      <p> Points:
+        {% for point in cluster['points'] %} ({{ point[0] }}, {{ point[1]
+        }}){% if not loop.last %}, {% endif %} {% endfor %}
+      </p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</body>
+
 </html>

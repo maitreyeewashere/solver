@@ -55,7 +55,7 @@ input {
 }
 
 button {
-  background-color: #01936a;
+  background-color: red;
   color: white;
   border: none;
   padding: 12px;
@@ -67,7 +67,7 @@ button {
 }
 
 button:hover {
-  background-color: #016b50;
+  background-color: rgb(182, 0, 0);
 }
 
 /* Job Entry */
