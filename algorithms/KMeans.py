@@ -10,7 +10,6 @@ def generate_blank_graph():
     plt.title("Clusters")
     plt.grid(True)
 
-    # Save the blank image
     plt.savefig('static/clusters.png')
     plt.close()
 
