@@ -5,34 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Floyd Warshall's Algorithm</title>
     <link rel="stylesheet" href="/static/floyd_styles.css">
-    <script>
-        function generateMatrix() {
-            let size = document.getElementById("size").value;
-            let matrixContainer = document.getElementById("matrix");
-            matrixContainer.innerHTML = ""; 
-
-            let table = document.createElement("table");
-            for (let i = 0; i < size; i++) {
-                let row = document.createElement("tr");
-                for (let j = 0; j < size; j++) {
-                    let cell = document.createElement("td");
-                    let input = document.createElement("input");
-                    input.type = "number";
-                    input.name = `matrix-${i}-${j}`;  
-                    input.value = i === j ? 0 : 999; 
-                    input.required = true;
-                    cell.appendChild(input);
-                    row.appendChild(cell);
-                }
-                table.appendChild(row);
-            }
-            matrixContainer.appendChild(table);
-        }
-    </script>
+    
     <style>
-        table { border-collapse: collapse; margin-top: 10px; }
-        td { padding: 5px; }
-        input { width: 50px; text-align: center; }
+        .matrix-input {
+            width: 100%;
+            height: 150px;
+            margin: 10px 0;
+            font-family: monospace;
+            padding: 10px;
+        }
+        .example {
+            color: #666;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -71,46 +57,34 @@
             </li>
         </ul>
     </nav>
-    <h2>Floyd-Warshall Solver</h2>
+    <h2>Floyd Warshall's Algorithm</h2>
+    {% if error %}
+    <div style="color: red; margin-bottom: 10px;">
+        {{ error }}
+    </div>
+    {% endif %}
     <form action="/graph/floyd-warshall" method="post">
-        <label for="size">Number of Vertices</label>
-        <input type="number" id="size" name="size" min="2" max="10" value="3" required>
-        <button type="button" onclick="generateMatrix()" styles="background-color: #007BFF;">Input Matrix</button>
-        <br><br>
-
-        <div id="matrix">
-            {% if matrix %}
-            <table>
-                {% for row in matrix %}
-                <tr>
-                    {% for cell in row %}
-                    <td><input type="number" name="matrix-{{ loop.parent.index0 }}-{{ loop.index0 }}" value="{{ cell }}" required></td>
-                    {% endfor %}
-                </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
+        <label for="matrix">Enter the adjacency matrix as a 2D list (use 999 for infinity):</label>
+        <textarea id="matrix" name="matrix" class="matrix-input" required placeholder="[[0, 999, 999],
+[999, 0, 999],
+[999, 999, 0]]"></textarea>
+        <div class="example">
+            Example format: [[0, 999, 999], [999, 0, 999], [999, 999, 0]]
         </div>
-        <br>
-        <button type="submit">Submit Matrix</button>
+        <button type="submit">Calculate Shortest Paths</button>
     </form>
 
     {% if result %}
     <h2>Shortest Path Matrix</h2>
-    {% if matrix %}
-<table>
-    {% for row in matrix %}
-    <tr>
-        {% for cell in row %}
-            <td><input type="number" name="matrix-{{ loop.parent.index0 }}-{{ loop.index0 }}" value="{{ cell }}" required></td>
+    <table>
+        {% for row in result %}
+        <tr>
+            {% for cell in row %}
+            <td>{{ cell }}</td>
+            {% endfor %}
+        </tr>
         {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
-{% endif %}
-
-    
+    </table>
     {% endif %}
-
 </body>
 </html>
