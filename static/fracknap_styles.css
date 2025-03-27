@@ -55,7 +55,7 @@ body {
   }
   
   button {
-      background-color: #01936a;
+      background-color: red;
       color: white;
       border: none;
       padding: 12px;
@@ -67,7 +67,7 @@ body {
   }
   
   button:hover {
-      background-color: #016b50;
+      background-color: rgb(197, 0, 0);
   }
 
 /* Max Profit Display */
